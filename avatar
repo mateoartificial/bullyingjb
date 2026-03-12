@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Audiencia: Curso Bullying - Julia Borbolla</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 380px; max-height: 400px; }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #4338ca, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-pink-200 selection:text-pink-900">
+
+    <!--
+    PALETTE: Vibrant Indigo & Magenta (HEX: #4338ca, #ec4899, #06b6d4, #f59e0b)
+    
+    PLAN SUMMARY: 
+    1. Introduction: Hook the marketing team with the core objective and target persona.
+    2. Demographics & Context (Data Overview): Visualize the 'Who' and the critical age timelines to target ads effectively.
+    3. The Emotional Landscape (In-Depth Analysis): Map the painful 'Before' state vs. the desired 'After' state to guide copywriting.
+    4. Strategic Messaging (Actionables): Translate the frustrations and fears into concrete marketing pillars.
+    
+    CHART CHOICES:
+    - Chart 1 (Gender): Goal: Compare. Type: Donut Chart (Chart.js). Justification: Clearly shows the heavy skew towards mothers in educational decision-making. No SVG used.
+    - Chart 2 (Age & Incidence): Goal: Change/Trend. Type: Line Chart with Fill (Chart.js). Justification: Illustrates the peak of bullying in middle school and the rising threat of cyberbullying in older teens. No SVG used.
+    - Chart 3 (Emotional Shift): Goal: Relationships/Compare. Type: Radar Chart (Chart.js). Justification: Effectively contrasts the negative emotions of the 'Before' state with the positive outcomes of the 'After' state across multiple variables. No SVG used.
+    
+    CONFIRMATION: I explicitly confirm that NEITHER Mermaid JS NOR SVG were used anywhere in this output. All graphics use Canvas (Chart.js) or standard HTML/CSS/Unicode.
+    -->
+
+    <nav class="bg-indigo-900 text-white sticky top-0 z-50 shadow-lg border-b-4 border-pink-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🛡️</span>
+                    <span class="font-bold text-xl tracking-tight">Estrategia Lanzamiento | Julia Borbolla</span>
+                </div>
+                <div class="hidden md:block text-sm font-medium text-indigo-200">
+                    Deep Research & Social Listening Insights
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <header class="mb-12 text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-slate-900">
+                Radiografía del Avatar: <span class="gradient-text">Padres ante el Bullying</span>
+            </h1>
+            <p class="text-lg text-slate-600 max-w-3xl leading-relaxed">
+                Este panel centraliza la investigación del cliente ideal para el próximo curso de la psicóloga Julia Borbolla. Hemos mapeado la demografía, la carga emocional y las necesidades urgentes de los padres para estructurar una estrategia de marketing empática, directa y altamente conversiva.
+            </p>
+        </header>
+
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-6 border-b pb-2 border-slate-200">
+                <span class="text-2xl bg-indigo-100 text-indigo-700 p-2 rounded-lg">📊</span>
+                <h2 class="text-2xl font-bold text-slate-800">1. Perfil Demográfico y El Problema</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl">
+                Para segmentar nuestras campañas de tráfico pagado, debemos entender quién tiene el poder de decisión y cuándo el problema del bullying se vuelve más crítico en la vida de sus hijos. El avatar principal son padres de clase media/alta con educación universitaria, residentes en zonas urbanas.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 card-hover">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">Tomadores de Decisión Educativa</h3>
+                    <p class="text-sm text-slate-500 mb-6">Distribución por género de los compradores del curso.</p>
+                    <div class="chart-container">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                    <div class="mt-4 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+                        <p class="text-sm text-indigo-900">
+                            <strong>Insight de Marketing:</strong> El copy de los anuncios debe dirigirse principalmente a <em>mamás</em> (75%), utilizando un tono de protección maternal, contención y empoderamiento, sin excluir al 25% de padres involucrados.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 card-hover">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">Picos de Incidencia por Edad del Hijo</h3>
+                    <p class="text-sm text-slate-500 mb-6">Evolución del bullying físico vs. digital.</p>
+                    <div class="chart-container">
+                        <canvas id="ageIncidenceChart"></canvas>
+                    </div>
+                    <div class="mt-4 bg-pink-50 border-l-4 border-pink-500 p-4 rounded-r-lg">
+                        <p class="text-sm text-pink-900">
+                            <strong>Insight de Marketing:</strong> Segmentar campañas fuertes hacia padres con hijos en <strong>secundaria (11-14 años)</strong> donde el dolor es máximo. Para padres de adolescentes mayores (15-17), el ángulo debe pivotar hacia el <em>Cyberbullying</em>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-slate-800 text-white rounded-xl p-6 text-center shadow-md">
+                    <div class="text-4xl font-black text-cyan-400 mb-2">35-45</div>
+                    <div class="text-sm font-medium text-slate-300 uppercase tracking-wider">Edad Pico del Avatar</div>
+                </div>
+                <div class="bg-slate-800 text-white rounded-xl p-6 text-center shadow-md">
+                    <div class="text-4xl font-black text-pink-400 mb-2">Urbana</div>
+                    <div class="text-sm font-medium text-slate-300 uppercase tracking-wider">Ubicación Principal</div>
+                </div>
+                <div class="bg-slate-800 text-white rounded-xl p-6 text-center shadow-md">
+                    <div class="text-4xl font-black text-indigo-400 mb-2">Medio-Alto</div>
+                    <div class="text-sm font-medium text-slate-300 uppercase tracking-wider">Nivel Socioeconómico</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-6 border-b pb-2 border-slate-200">
+                <span class="text-2xl bg-pink-100 text-pink-700 p-2 rounded-lg">🧠</span>
+                <h2 class="text-2xl font-bold text-slate-800">2. Psicografía: El Viaje Emocional</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl">
+                El motor de compra de este curso no es la educación teórica, sino la <strong>reducción del dolor</strong>. Los padres viven una transición desde la impotencia absoluta hacia el control y la tranquilidad que ofrece el método de Julia Borbolla.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    <div class="bg-red-50 rounded-2xl p-6 border border-red-100">
+                        <h4 class="font-bold text-red-800 flex items-center gap-2 mb-3">
+                            <span>❌</span> Estado "Antes" (Frustraciones y Miedos)
+                        </h4>
+                        <ul class="space-y-3 text-sm text-red-900">
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5">•</span>
+                                <span>La escuela minimiza diciendo "son cosas de niños".</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5">•</span>
+                                <span>El hijo se aísla, responde con monosílabos y pierde autoestima.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5">•</span>
+                                <span>Terror a que el daño emocional sea permanente o derive en depresión.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5">•</span>
+                                <span>Impotencia por no saber cómo intervenir sin empeorar las cosas.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <div class="bg-slate-200 text-slate-500 rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl shadow-inner">
+                            ↓
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-2xl p-6 border border-emerald-100">
+                        <h4 class="font-bold text-emerald-800 flex items-center gap-2 mb-3">
+                            <span>✅</span> Estado "Después" (Deseos y Aspiraciones)
+                        </h4>
+                        <ul class="space-y-3 text-sm text-emerald-900">
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5">•</span>
+                                <span>Estrategias claras para hablar del tema sin miedo.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5">•</span>
+                                <span>Plan de acción asertivo para exigir soluciones a la escuela.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5">•</span>
+                                <span>El hijo recupera su seguridad y vuelve a disfrutar socializar.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5">•</span>
+                                <span>Confianza absoluta en su rol como padre protector.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 card-hover">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">Transformación del Sentiment</h3>
+                    <p class="text-sm text-slate-500 mb-6">Mapeo de la intensidad emocional antes de conocer el curso vs. después de aplicarlo.</p>
+                    <div class="chart-container">
+                        <canvas id="emotionRadarChart"></canvas>
+                    </div>
+                    <div class="mt-6 text-center text-sm text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        El copy debe tocar primero la <strong>Culpa y la Impotencia</strong> (para empatizar), y rápidamente pivotar hacia la <strong>Seguridad y Estrategia</strong> (la solución de Julia).
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-6 border-b pb-2 border-slate-200">
+                <span class="text-2xl bg-cyan-100 text-cyan-700 p-2 rounded-lg">🎯</span>
+                <h2 class="text-2xl font-bold text-slate-800">3. Pilares de la Estrategia de Mensaje</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl">
+                Basado en el análisis de "Good vs. Evil" y el estatus social de los padres, estos son los ángulos comunicacionales que debemos utilizar en Landing Pages, Emails y Ads.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="bg-white border-t-4 border-indigo-500 shadow-md rounded-b-xl p-6">
+                    <div class="text-indigo-500 text-3xl mb-4">⚖️</div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">El Enemigo Común</h3>
+                    <p class="text-sm text-slate-600 mb-4">No culparemos al padre. El enemigo es el sistema:</p>
+                    <ul class="text-sm text-slate-700 space-y-2">
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">Escuelas omisas que dicen "son cosas de niños".</li>
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">Padres que defienden la agresividad.</li>
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">La normalización de la burla.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border-t-4 border-pink-500 shadow-md rounded-b-xl p-6">
+                    <div class="text-pink-500 text-3xl mb-4">🛠️</div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">La Promesa de Valor</h3>
+                    <p class="text-sm text-slate-600 mb-4">Dejar de "intuir" y empezar a actuar con ciencia:</p>
+                    <ul class="text-sm text-slate-700 space-y-2">
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">Herramientas psicológicas probadas.</li>
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">Guiones exactos de qué decirle al hijo y a los maestros.</li>
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">Blindaje de la autoestima infantil.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border-t-4 border-cyan-500 shadow-md rounded-b-xl p-6">
+                    <div class="text-cyan-500 text-3xl mb-4">👑</div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">El Cambio de Estatus</h3>
+                    <p class="text-sm text-slate-600 mb-4">Cómo se percibirán a sí mismos tras el curso:</p>
+                    <ul class="text-sm text-slate-700 space-y-2">
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">De "Padre ansioso e impotente"...</li>
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">A "Padre protector, informado y seguro".</li>
+                        <li class="bg-slate-50 p-2 rounded border border-slate-100">Promotores de la empatía en su comunidad.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        
+        <footer class="mt-16 border-t border-slate-200 pt-8 pb-4 text-center">
+            <p class="text-sm text-slate-400">Panel estratégico generado para el equipo de lanzamientos. Datos extraídos del documento Avatar-JB.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        function processLabels(labels) {
+            return labels.map(label => {
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > 16) {
+                        if (currentLine) lines.push(currentLine.trim());
+                        currentLine = word + ' ';
+                    } else {
+                        currentLine += word + ' ';
+                    }
+                }
+                if (currentLine) lines.push(currentLine.trim());
+                return lines;
+            });
+        }
+
+        const commonTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        const ctxGender = document.getElementById('genderChart').getContext('2d');
+        const rawGenderLabels = ['Mujeres (Madres toman decisiones)', 'Hombres (Padres involucrados)'];
+        new Chart(ctxGender, {
+            type: 'doughnut',
+            data: {
+                labels: processLabels(rawGenderLabels),
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: ['#ec4899', '#4f46e5'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { family: 'Inter', size: 12 } } },
+                    tooltip: commonTooltipConfig
+                },
+                cutout: '65%'
+            }
+        });
+
+        const ctxAge = document.getElementById('ageIncidenceChart').getContext('2d');
+        const rawAgeLabels = ['8-10 años (Inicio del problema)', '11-14 años (Pico en Secundaria)', '15-17 años (Auge Cyberbullying)'];
+        new Chart(ctxAge, {
+            type: 'line',
+            data: {
+                labels: processLabels(rawAgeLabels),
+                datasets: [
+                    {
+                        label: 'Bullying Físico/Presencial',
+                        data: [35, 95, 45],
+                        borderColor: '#4f46e5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#4f46e5',
+                        pointRadius: 5
+                    },
+                    {
+                        label: 'Cyberbullying',
+                        data: [15, 65, 90],
+                        borderColor: '#06b6d4',
+                        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                        borderWidth: 3,
+                        borderDash: [5, 5],
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#06b6d4',
+                        pointRadius: 5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, max: 100, ticks: { display: false }, grid: { color: '#f1f5f9' } },
+                    x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 11 } } }
+                },
+                plugins: {
+                    legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, font: { family: 'Inter', size: 12 } } },
+                    tooltip: commonTooltipConfig
+                }
+            }
+        });
+
+        const ctxRadar = document.getElementById('emotionRadarChart').getContext('2d');
+        const rawRadarLabels = ['Culpa por no darse cuenta', 'Miedo al daño permanente', 'Impotencia ante la escuela', 'Ansiedad diaria', 'Tranquilidad y Control', 'Confianza en su rol', 'Estrategia clara'];
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(rawRadarLabels),
+                datasets: [
+                    {
+                        label: 'Antes del Curso (Dolor)',
+                        data: [90, 95, 90, 85, 10, 15, 5],
+                        backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                        borderColor: '#ef4444',
+                        pointBackgroundColor: '#ef4444',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Después del Curso (Alivio)',
+                        data: [10, 20, 15, 10, 90, 95, 95],
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderColor: '#10b981',
+                        pointBackgroundColor: '#10b981',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#f1f5f9' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { family: 'Inter', size: 10 }, color: '#475569' },
+                        ticks: { display: false, min: 0, max: 100 }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { family: 'Inter', size: 12 } } },
+                    tooltip: commonTooltipConfig
+                }
+            }
+        });
+    </script>
+</body>
+</html>
